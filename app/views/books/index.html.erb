@@ -2,13 +2,59 @@
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
-
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Books</h1>
-    <%= link_to 'New book', new_book_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to 'New book', new_book_path, class: "rounded-lg py-2 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
-
   <div id="books" class="min-w-full">
-    <%= render @books %>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
+      <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mb-4">
+        <thead class="text-xs text-white uppercase bg-blue-600 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="px-6 py-3">
+              Title
+            </th>
+            <th scope="col" class="px-6 py-3">
+              <div class="flex items-center">
+                Author
+              </div>
+            </th>
+            <th scope="col" class="px-6 py-3">
+              <div class="flex items-center">
+                Price
+              </div>
+            </th>
+            <th scope="col" class="px-6 py-3">
+              <span class="sr-only">Edit</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |book| %>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" id="<%= dom_id book %>">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <%= book.title %>
+              </th>
+              <td class="px-6 py-4">
+                <%= book.author %>
+              </td>
+              <td class="px-6 py-4">
+                <%= book.price %>
+              </td>
+              <td class="px-6 py-4 text-right">
+                <div class="flex items-center justify-center">
+                  <%= link_to edit_book_path(book) do %>
+                    <i class="ri-edit-fill text-lg pr-2"></i>
+                  <% end %>
+                  <i class="ri-delete-bin-5-fill text-lg cursor-pointer" data-modal-target="popup-modal" data-modal-toggle="popup-modal" ></i>
+                </div>
+              </td>
+            </div>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="px-4 pb-4"><%== pagy_nav(@pagy) %></div>
+    </div>
   </div>
 </div>
+<%= render 'confirm_delete' %>

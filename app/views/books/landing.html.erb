@@ -1,0 +1,32 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Books</h1>
+  </div>
+  <div id="books" class="min-w-full">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <%# <%= render @books %>
+      <% @books.each do |book| %>
+        <div id="<%= dom_id book %>" class="p-5 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 flex flex-col justify-between">
+          <div>
+            <i class="ri-book-3-fill text-4xl"></i>
+            <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white"><%= book.title %></h5>
+            <h5 class="mb-2 text-lg font-normal tracking-tight text-gray-400 dark:text-white"><%= book.author %></h5>
+            <p class="my-5 text-2xl text-blue-600 font-medium">
+              $
+              <%= book.price %>
+            </p>
+          </div>
+          <div>
+            <% if action_name != "show" %>
+              <%= link_to "View more", book, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+              <%= link_to 'Add to Cart', edit_book_path(book), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

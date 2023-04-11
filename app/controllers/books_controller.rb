@@ -3,6 +3,10 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
+    @pagy, @books = pagy(Book.all)
+  end
+
+  def landing
     @books = Book.all
   end
 
@@ -58,13 +62,14 @@ class BooksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_book
-      @book = Book.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def book_params
-      params.require(:book).permit(:title, :description, :author, :price)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_book
+    @book = Book.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def book_params
+    params.require(:book).permit(:title, :description, :author, :price)
+  end
 end
