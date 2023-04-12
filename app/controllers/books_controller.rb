@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show edit update destroy ]
-
+  before_action :authorized
   # GET /books or /books.json
   def index
     @pagy, @books = pagy(Book.all)

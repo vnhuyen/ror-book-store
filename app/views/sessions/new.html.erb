@@ -1,17 +1,20 @@
-<div class="w-full max-w-screen-sm mx-auto bg-slate-100 p-5 rounded-md">
-  <h1 class="text-gray-700 text-2xl font-bold mb-2 text-center">Login</h1>
-  <%= form_tag sessions_path do |form|  %>
-    <div class="my-5">
-      <%= label_tag :email %>
-      <%= text_field_tag :email, "", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-    </div>
-    <div class="my-5">
-      <%= label_tag :password %>
-      <%= password_field_tag :password, "", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-    </div>
-    <div class="my-5">
-      <%= submit_tag("Login", :id=>"button", :class=>"rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer", :name=>"submit") %>
-      <span class="ml-2">Or <%= link_to 'Create an account', new_user_path, class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %></span>
-    </div>
-  <% end %>
+<div class="w-full max-w-screen-sm mx-auto">
+  <%= render 'layouts/notice' %>
+  <div class="bg-slate-100 rounded-md p-5">
+    <h1 class="text-gray-700 text-2xl font-bold mb-2 text-center">Login</h1>
+    <%= form_tag sessions_path do |form|  %>
+      <div class="my-5">
+        <%= label_tag :email %>
+        <%= text_field_tag :email, "", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+      <div class="my-5">
+        <%= label_tag :password %>
+        <%= password_field_tag :password, "", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+      <div class="my-5">
+        <%= submit_tag("Login", :id=>"button", :class=>"rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer", :name=>"submit") %>
+        <span class="ml-2">Or <%= link_to 'Create an account', signup_path, class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %></span>
+      </div>
+    <% end %>
+  </div>
 </div>

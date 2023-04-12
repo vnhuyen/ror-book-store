@@ -4,7 +4,7 @@
   <% end %>
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Users</h1>
-    <%= link_to 'New user', signup_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to 'New user', new_user_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
     <%# <button data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
       New User
     </button> %>
@@ -34,14 +34,13 @@
                 <%= user.email %>
               </th>
               <td class="px-6 py-4">
-                User
+                <%= user.role %>
               </td>
               <td class="px-6 py-4 text-right">
                 <div class="flex items-center justify-center">
                   <%= link_to edit_user_path(user) do %>
                     <i class="ri-edit-fill text-lg pr-2"></i>
                   <% end %>
-                  <i class="ri-delete-bin-5-fill text-lg cursor-pointer" data-modal-target="popup-modal" data-modal-toggle="popup-modal" ></i>
                 </div>
               </td>
             </div>

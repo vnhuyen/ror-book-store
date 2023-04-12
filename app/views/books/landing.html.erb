@@ -21,8 +21,7 @@
           </div>
           <div>
             <% if action_name != "show" %>
-              <%= link_to "View more", book, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-              <%= link_to 'Add to Cart', edit_book_path(book), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+              <%= link_to "View more", book, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium hover:bg-blue-600 hover:text-white" %>
             <% end %>
           </div>
         </div>

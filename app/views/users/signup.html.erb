@@ -1,5 +1,21 @@
-<div class="w-full max-w-screen-sm mx-auto">
-  <h1 class="font-bold text-4xl text-center">Create New User</h1>
-  <%= render "form", user: @user %>
-  <span class="ml-2">Or <%= link_to 'Create an account', new_user_path, class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %></span>
+<div class="w-full max-w-screen-sm mx-auto bg-slate-100 p-5 rounded-md">
+  <h1 class="font-bold text-4xl text-center">Sign Up</h1>
+  <%# <%= render "form", user: @user %>
+  <%= form_for :user, url: register_path, method: :post do |f| %>
+    <div class="my-5">
+      <%= f.label :email, "Email" %>
+      <%= f.text_field :email, :placeholder => "example@gmail.com", :required => true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+    <div class="my-5">
+      <%= f.label :password, "Password" %>
+      <%= f.text_field :password, :placeholder => "******", :required => true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+    <div class="my-5">
+      <%= f.label :password_confirmation, "Confirm Password" %>
+      <%= f.text_field :password_confirmation, :placeholder => "******", :required => true, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    </div>
+    <%= f.submit "Create account", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <span class="ml-2">Or <%= link_to 'Login', login_path, class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %></span>
+  <% end %>
+  <%# <%= link_to 'Back to users', users_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 </div>
