@@ -48,4 +48,16 @@ Book.create([
     description: "Get the most out of this foundational reference and improve the productivity of your software teams.",
     price: 19,
   },
+  {
+    title: "Pride and Prejudice",
+    author: "Gerardus Blokdyk",
+    description: "Pride and Prejudice",
+    price: 11,
+  },
+  {
+    title: "JSON Web Token",
+    author: "Jane Austen",
+    description: "What prevents me from making the changes I know will make me a more effective JSON Web Token leader?",
+    price: 11,
+  },
 ])

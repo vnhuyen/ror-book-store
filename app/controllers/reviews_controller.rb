@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
-  # before_action :find_book
-  before_action :authorized
+  before_action :set_book
+  before_action :set_review, only: [:edit, :update, :destroy]
+  before_action :authorized, only: [:new, :edit]
 
   def new
     @review = Review.new
@@ -8,32 +9,43 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @review.book_id = 1 #@book.id
-    @review.user_id = current_user.__id__
+    @review.book_id = @book.id
+    @review.user_id = current_user.id
 
-    respond_to do |format|
-      if @review.save
-        notice = "review was successfully created."
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-      end
+    if @review.save
+      redirect_to book_path(@book)
+    else
+      render "new"
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @review.update(review_params)
+      redirect_to book_path(@book)
+    else
+      render "edit"
+    end
+  end
+
+  def destroy
+    @review.destroy
+    redirect_to book_path(@book)
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_review
-    @review = review.find(params[:id])
-  end
-
-  def find_book
-    @book = review.find(params[:book_id])
-  end
-
-  # Only allow a list of trusted parameters through.
   def review_params
-    params.require(:review).permit(:comment)
+    params.require(:review).permit(:rating, :comment)
+  end
+
+  def set_book
+    @book = Book.find(params[:book_id])
+  end
+
+  def set_review
+    @review = Review.find(params[:id])
   end
 end

@@ -41,6 +41,10 @@ gem "bootsnap", require: false
 
 # jquery-rails
 gem 'jquery-rails'
+
+# simple form
+gem 'simple_form'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
